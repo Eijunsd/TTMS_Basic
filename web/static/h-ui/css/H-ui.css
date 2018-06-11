@@ -183,7 +183,7 @@ css 命名规范
 
   searchBar 搜索条   search 搜索条    searchTxt 搜索框   searchBtn 搜索按钮    search_key 搜索词
 
-  member 会员   ucenter 用户中心    loginBar 登陆条    login 登录    loginBtn 登录按钮   regsiter 注册按钮   btn-regsiter注册按钮    name 用户名    password 密码   nickname 昵称   mobilephone/mobile 手机    telephone/tel 电话   defaultavatar 默认头像
+  member 会员   ucenter 用户中心    loginBar 登陆条    Login 登录    loginBtn 登录按钮   regsiter 注册按钮   btn-regsiter注册按钮    name 用户名    password 密码   nickname 昵称   mobilephone/mobile 手机    telephone/tel 电话   defaultavatar 默认头像
 
   hot 热点    news 新闻   banner/AD 广告    download 下载
 
@@ -3208,7 +3208,7 @@ H-ui采用Font Awesome 3.2.1的整套图标，因为是图标字体，所以可�
 /*4.2.4 顶部导航
 	Name:			mod_topnav
 	Sample:
-	<div class="topnav"><div class="cl"><div class="l">您好，欢迎来到Hui！</div><div class="r"><span class="r_nav">[ <a rel="nofollow" href="javascript:login();">登录</a> ]</span><span class="pipe">|</span><span class="r_nav">[ <a href="javascript:register();" rel="nofollow">注册</a> ]</span><span class="pipe">|</span><span class="r_nav"><a title="收藏" href="javascript:addFavorite();">收藏本站</a></span><span class="pipe">|</span><span class="r_nav"><a href="javascript:void(0)" onclick="setHome(this);" title="设为首页">设为首页</a></span></div></div></div>
+	<div class="topnav"><div class="cl"><div class="l">您好，欢迎来到Hui！</div><div class="r"><span class="r_nav">[ <a rel="nofollow" href="javascript:Login();">登录</a> ]</span><span class="pipe">|</span><span class="r_nav">[ <a href="javascript:register();" rel="nofollow">注册</a> ]</span><span class="pipe">|</span><span class="r_nav"><a title="收藏" href="javascript:addFavorite();">收藏本站</a></span><span class="pipe">|</span><span class="r_nav"><a href="javascript:void(0)" onclick="setHome(this);" title="设为首页">设为首页</a></span></div></div></div>
 
 */
 .topnav{height:30px;line-height:30px;background-color;#f7f7f7;border-bottom:1px solid #EBEBEB; font-size:12px}

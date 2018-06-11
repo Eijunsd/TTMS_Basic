@@ -50,7 +50,7 @@
     <%--String flag = (String) session.getAttribute("loginflag");--%>
     <%--if (flag == null || !flag.equals("ok")) {--%>
         <%--request.getSession().setAttribute("desc", "请从入口登陆。");--%>
-        <%--request.getRequestDispatcher("login.jsp").forward(request, response);--%>
+        <%--request.getRequestDispatcher("Login.jsp").forward(request, response);--%>
     <%--}--%>
 
 <%--%>--%>

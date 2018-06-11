@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/login")
-public class login extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -48,6 +48,7 @@ public class login extends HttpServlet {
         } else if (username != null) {
             for (User u : userList) {
                 if (u.getEmpNo().equals(username)) {
+                    System.out.println("±È¿˙”√ªß");
                     user = u.getEmpNo();
                     pass = u.getEmpPass();
                     type = u.getType();
