@@ -36,6 +36,7 @@ public class StudioDAO implements IStudioDAO {
      */
     @SuppressWarnings("finally")
     public ArrayList<Studio> findStudioByPage(int cPage) {
+        System.out.println("在StudioDAO中调用findStudioByPage开始...");
         currentPage = cPage;
         ArrayList<Studio> list = new ArrayList<Studio>();
 
@@ -64,21 +65,26 @@ public class StudioDAO implements IStudioDAO {
                 currentPage = allPageCount;
 
             // 获取第currentPage页数据
-            String sql2 = "select * from studio where studio.studio_row_count like ? limit ?,?";
+            String sql2 = "select * from studio where studio.studio_row_count  limit ?,?";
             // select * from tablename limit 开始位置,每页行数
             pstmt = conn.prepareStatement(sql2);
-            pstmt.setInt(2, PAGE_SIZE * (currentPage - 1));
-            pstmt.setInt(3, PAGE_SIZE);
+            pstmt.setInt(1, PAGE_SIZE * (currentPage - 1));
+            pstmt.setInt(2, PAGE_SIZE);
             rs = pstmt.executeQuery();
             Studio studio = null;
 
             while (rs.next()) {
                 studio = new Studio();
-                studio.setStudioId(rs.getInt("studio_id"));
-
+//                studio.setStudioId(rs.getInt("studio_id"));
+                studio.setStudioName(rs.getString("studio_name"));
+                studio.setStudioRowCount(rs.getInt("studio_row_count"));
+                studio.setStudioColCount(rs.getInt("studio_col_count"));
+                studio.setStudioFlag(rs.getInt("studio_flag"));
+                System.out.println(studio);
                 // 将该用户信息插入列表
                 list.add(studio);
             }
+            System.out.println("在StudioDAO中调用findStudioByPage结束...");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

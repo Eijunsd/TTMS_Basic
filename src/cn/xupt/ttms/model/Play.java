@@ -98,4 +98,19 @@ public class Play implements Serializable {
     public void setPlayStatus(Integer playStatus) {
         this.playStatus = playStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Play{" +
+                "playId=" + playId +
+                ", playType='" + playType + '\'' +
+                ", playLang='" + playLang + '\'' +
+                ", playName='" + playName + '\'' +
+                ", playIntroduction='" + playIntroduction + '\'' +
+                ", playImage='" + playImage + '\'' +
+                ", playLength=" + playLength +
+                ", playTicketPrice=" + playTicketPrice +
+                ", playStatus=" + playStatus +
+                '}';
+    }
 }

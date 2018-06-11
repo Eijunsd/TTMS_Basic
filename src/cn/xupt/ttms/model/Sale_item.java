@@ -49,4 +49,14 @@ public class Sale_item implements Serializable {
     public void setSaleItemPrice(Float saleItemPrice) {
         this.saleItemPrice = saleItemPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Sale_item{" +
+                "saleItemId=" + saleItemId +
+                ", ticketId=" + ticketId +
+                ", saleId=" + saleId +
+                ", saleItemPrice=" + saleItemPrice +
+                '}';
+    }
 }

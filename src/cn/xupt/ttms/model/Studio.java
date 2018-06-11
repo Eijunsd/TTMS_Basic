@@ -10,14 +10,14 @@ public class Studio implements Serializable {
     private String studioName;
 
     private Integer studioRowCount;
-
-    public Studio(String studioName, Integer studioRowCount, Integer studioColCount, String studioIntroduction, Integer studioFlag) {
-        this.studioName = studioName;
-        this.studioRowCount = studioRowCount;
-        this.studioColCount = studioColCount;
-        this.studioIntroduction = studioIntroduction;
-        this.studioFlag = studioFlag;
-    }
+//
+//    public Studio(String studioName, Integer studioRowCount, Integer studioColCount, String studioIntroduction, Integer studioFlag) {
+//        this.studioName = studioName;
+//        this.studioRowCount = studioRowCount;
+//        this.studioColCount = studioColCount;
+//        this.studioIntroduction = studioIntroduction;
+//        this.studioFlag = studioFlag;
+//    }
 
     private Integer studioColCount;
 
@@ -43,7 +43,8 @@ public class Studio implements Serializable {
     }
 
     public void setStudioName(String studioName) {
-        this.studioName = studioName == null ? null : studioName.trim();
+//        this.studioName = studioName == null ? null : studioName.trim();
+        this.studioName = studioName;
     }
 
     public Integer getStudioRowCount() {
@@ -67,7 +68,8 @@ public class Studio implements Serializable {
     }
 
     public void setStudioIntroduction(String studioIntroduction) {
-        this.studioIntroduction = studioIntroduction == null ? null : studioIntroduction.trim();
+        this.studioIntroduction = studioIntroduction;
+//        this.studioIntroduction = studioIntroduction == null ? null : studioIntroduction.trim();
     }
 
     public Integer getStudioFlag() {
@@ -76,5 +78,17 @@ public class Studio implements Serializable {
 
     public void setStudioFlag(Integer studioFlag) {
         this.studioFlag = studioFlag;
+    }
+
+    @Override
+    public String toString() {
+        return "Studio{" +
+                "studioId=" + studioId +
+                ", studioName='" + studioName + '\'' +
+                ", studioRowCount=" + studioRowCount +
+                ", studioColCount=" + studioColCount +
+                ", studioIntroduction='" + studioIntroduction + '\'' +
+                ", studioFlag=" + studioFlag +
+                '}';
     }
 }

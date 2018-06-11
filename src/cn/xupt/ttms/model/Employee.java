@@ -70,4 +70,16 @@ public class Employee implements Serializable {
     public void setEmpEmail(String empEmail) {
         this.empEmail = empEmail == null ? null : empEmail.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "empId=" + empId +
+                ", empNo='" + empNo + '\'' +
+                ", empName='" + empName + '\'' +
+                ", empTelNum='" + empTelNum + '\'' +
+                ", empAddr='" + empAddr + '\'' +
+                ", empEmail='" + empEmail + '\'' +
+                '}';
+    }
 }

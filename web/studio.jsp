@@ -1,4 +1,6 @@
-<%--suppress ALL --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="cn.xupt.ttms.model.Studio" %>
+<%@ page import="java.util.ArrayList" %><%--suppress ALL --%>
 <%--suppress ALL --%>
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -55,13 +57,19 @@
         style="color: #8a6d3b;background: #FFFFFF;border-radius: 6px;margin-left: 20px;margin-top: 10px;margin-bottom: 20px">
     添加演出厅
 </button>
+<button>
+    <form action="/studioServlet?method=searchByPage" method="post">
 
+        <input type="submit" class="layui-btn" value="查询所有">
+</button>
 
 <form onsubmit="highlight(this.s.value);return false;" style="float: right">
     <input name="s" id="s" class="sou"/>
     <input type="submit" id="submit" value="搜索"
            style="margin-right: 20px;font-size: 20px;background: #508675;color: #FFFFFF"/>
 </form>
+
+
 <div id="page1">
     <table class="layui-table" lay-skin="nob" lay-even="" style="text-align: center;">
         <colgroup>
@@ -76,62 +84,73 @@
             <td>名称</td>
             <td>行数</td>
             <td>列数</td>
+            <td>状态</td>
             <td>操作</td>
         </tr>
         </thead>
 
         <%--//填充数据--%>
-        <%--<%--%>
-        <%--int currentPage = 1;  //当前页--%>
-        <%--int allCount = 0;     //总记录数--%>
-        <%--int allPageCount = 0; //总页数--%>
-        <%--Studio Studio = null;--%>
-        <%--//查看request中是否有currentPage信息，如没有，则说明首次访问该页--%>
-        <%--if (request.getAttribute("allStudio") != null) {--%>
-        <%--//获取Action返回的信息--%>
-        <%--currentPage = ((Integer) request.getAttribute("currentPage")).intValue();--%>
-        <%--ArrayList<Studio> studioList = (ArrayList<Studio>) request.getAttribute("allStudio");--%>
-        <%--allCount = ((Integer) request.getAttribute("allCount")).intValue();--%>
-        <%--allPageCount = ((Integer) request.getAttribute("allPageCount")).intValue();--%>
+        <%
+            int currentPage = 1;  //当前页
+            int allCount = 0;     //总记录数
+            int allPageCount = 0; //总页数
+            Studio Studio = null;
+            //查看request中是否有currentPage信息，如没有，则说明首次访问该页
+            if (request.getAttribute("allStudio") != null) {
+                //获取Action返回的信息
+                currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
+                ArrayList<Studio> studioList = (ArrayList<Studio>) request.getAttribute("allStudio");
+                allCount = ((Integer) request.getAttribute("allCount")).intValue();
+                allPageCount = ((Integer) request.getAttribute("allPageCount")).intValue();
 
-        <%--if (studioList != null && studioList.size() > 0) {--%>
 
-        <%--for (int i = 0; i < studioList.size(); i++) {--%>
-        <%--out.println("<tr>");--%>
-        <%--%>--%>
+                if (studioList != null && studioList.size() > 0) {
+
+                    for (int i = 0; i < studioList.size(); i++) {
+                        out.println("<tr>");
+        %>
         <%--<th><%=studioList.get(i).getStudioId()%>--%>
         <%--</th>--%>
-        <%--<th><%=studioList.get(i).getStudioName()%>--%>
-        <%--</th>--%>
-        <%--<th><%=studioList.get(i).getStudioRowCount()%>--%>
-        <%--</th>--%>
-        <%--<th><%=studioList.get(i).getStudioColCount()%>--%>
+        <th><%=studioList.get(i).getStudioName()%>
+        </th>
+        <th><%=studioList.get(i).getStudioRowCount()%>
+        </th>
+        <th><%=studioList.get(i).getStudioColCount()%>
         <%--</th>--%>
         <%--<th><%=studioList.get(i).getStudioIntroduction()%>--%>
         <%--</th>--%>
 
         <%--<!-- 这里要对演出厅的状态进行判断输出* -->--%>
 
-        <%--<th><%=studioList.get(i).getStudioFlag()%>--%>
-        <%--</th>--%>
+        <th><%=studioList.get(i).getStudioFlag()%>
+        </th>
 
-        <%--<td>--%>
-        <%--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#reviseAudio"--%>
-        <%--onclick="searchAudio(this)" style="border-radius: 5px">修改--%>
-        <%--</button>--%>
-        <%--<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSource"--%>
-        <%--style="border-radius: 5px">删除--%>
-        <%--</button>--%>
-        <%--</td>--%>
         <%--</tr>--%>
-        <%--<%} %>--%>
-        <%--<%--%>
-        <%--}--%>
-        <%--%>--%>
-        <%--</tbody>--%>
-        <%--<%--%>
-        <%--}--%>
-        <%--%>--%>
+
+        <%--</tr>--%>
+
+        <td>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reviseAudio"
+                    onclick="searchAudio(this)" style="border-radius: 5px">修改
+            </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSource"
+                    style="border-radius: 5px">删除
+            </button>
+        </td>
+        <%--<th><a href="/TestWeb/StudioServlet?method=searchById&studioid=<%=studioList.get(i).getStudioId()%>">修改</a></th>--%>
+        <%--<th>--%>
+            <%--<a href="/TestWeb/StudioServlet?method=delete&studioid=<%=studioList.get(i).getStudioId()%>&studio_name=${search_studio_name}">删除</a>--%>
+        <%--</th>--%>
+        <%} %>
+
+
+        <%
+            }
+        %>
+        </tbody>
+        <%
+            }
+        %>
     </table>
 </div>
 
@@ -150,8 +169,8 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <h4>编号：<input type="text" class="number" placeholder="输入2-10位数字" onblur="checkNum()">
-                    <p style="display: inline;"></p></h4>
+                <%--<h4>编号：<input type="text" class="number" placeholder="输入2-10位数字" onblur="checkNum()">--%>
+                    <%--<p style="display: inline;"></p></h4>--%>
                 <h4>名称：<input type="text" class="name" placeholder="输入中文" onblur="checkName()">
                     <p style="display: inline;"></p></h4>
                 <h4>行数：<input type="text" class="addrow" placeholder="输入1到20的整数" onblur="checkCol()">
@@ -191,19 +210,19 @@
             <div class="modal-body">
 
                 <div>
-                    <h4>编号：<input type="text" id="num">
+                    <h4>名称：<input type="text" id="num">
                         <p style="display: inline"></p></h4>
                 </div>
                 <div>
-                    <h4>名称：<input type="text" id="name">
+                    <h4>行数：<input type="text" id="name">
                         <p style="display: inline"></p></h4>
                 </div>
                 <div>
-                    <h4>行数：<input type="text" id="row">
+                    <h4>列数：<input type="text" id="row">
                         <p style="display: inline"></p></h4>
                 </div>
                 <div>
-                    <h4>列数：<input type="text" id="col">
+                    <h4>状态：<input type="text" id="col">
                         <p style="display: inline"></p></h4>
                 </div>
 
@@ -213,7 +232,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" onclick="submit()">
                     保存
                 </button>
             </div>

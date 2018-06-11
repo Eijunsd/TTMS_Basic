@@ -96,7 +96,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 演出厅管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="studio.jsp" data-title="演出厅">全部演出厅</a></li>
+                    <li><a data-href="studio.jsp" data-title="演出厅" onclick="/studioServlet?method=searchByPage">全部演出厅</a></li>
                 </ul>
             </dd>
         </dl>

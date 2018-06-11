@@ -70,4 +70,16 @@ public class Ticket implements Serializable {
     public void setTicketLockedTime(Date ticketLockedTime) {
         this.ticketLockedTime = ticketLockedTime;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", seatId=" + seatId +
+                ", schedId=" + schedId +
+                ", ticketPrice=" + ticketPrice +
+                ", ticketStatus=" + ticketStatus +
+                ", ticketLockedTime=" + ticketLockedTime +
+                '}';
+    }
 }

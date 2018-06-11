@@ -60,4 +60,15 @@ public class Schedule implements Serializable {
     public void setSchedTicketPrice(Float schedTicketPrice) {
         this.schedTicketPrice = schedTicketPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "schedId=" + schedId +
+                ", studioId=" + studioId +
+                ", playId=" + playId +
+                ", schedTime=" + schedTime +
+                ", schedTicketPrice=" + schedTicketPrice +
+                '}';
+    }
 }

@@ -59,4 +59,15 @@ public class Seat implements Serializable {
     public void setSeatStatus(Integer seatStatus) {
         this.seatStatus = seatStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "seatId=" + seatId +
+                ", studioId=" + studioId +
+                ", seatRow=" + seatRow +
+                ", seatColumn=" + seatColumn +
+                ", seatStatus=" + seatStatus +
+                '}';
+    }
 }

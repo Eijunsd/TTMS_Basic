@@ -53,4 +53,14 @@ public class User implements Serializable {
     public void setHeadPath(String headPath) {
         this.headPath = headPath == null ? null : headPath.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "empNo='" + empNo + '\'' +
+                ", empPass='" + empPass + '\'' +
+                ", type=" + type +
+                ", headPath='" + headPath + '\'' +
+                '}';
+    }
 }

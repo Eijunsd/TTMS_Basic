@@ -80,4 +80,17 @@ public class Sale implements Serializable {
     public void setSaleStatus(Integer saleStatus) {
         this.saleStatus = saleStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "saleId=" + saleId +
+                ", empId=" + empId +
+                ", saleTime=" + saleTime +
+                ", salePayment=" + salePayment +
+                ", saleChange=" + saleChange +
+                ", saleType=" + saleType +
+                ", saleStatus=" + saleStatus +
+                '}';
+    }
 }
