@@ -1,8 +1,11 @@
 package cn.xupt.ttms.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Sale {
+public class Sale implements Serializable {
+
+    private static final long serialVersionUID = 3L;
     private Long saleId;
 
     private Integer empId;

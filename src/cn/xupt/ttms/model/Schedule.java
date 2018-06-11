@@ -1,8 +1,11 @@
 package cn.xupt.ttms.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Schedule {
+public class Schedule implements Serializable {
+
+    private static final long serialVersionUID = 5L;
     private Integer schedId;
 
     private Integer studioId;

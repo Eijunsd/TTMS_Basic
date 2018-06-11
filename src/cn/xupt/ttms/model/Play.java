@@ -1,6 +1,10 @@
 package cn.xupt.ttms.model;
 
-public class Play {
+import java.io.Serializable;
+
+public class Play implements Serializable {
+
+    private static final long serialVersionUID = 2L;
     private Integer playId;
 
     private String playType;

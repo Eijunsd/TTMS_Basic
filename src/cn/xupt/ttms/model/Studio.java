@@ -1,6 +1,10 @@
 package cn.xupt.ttms.model;
 
-public class Studio {
+import java.io.Serializable;
+
+public class Studio implements Serializable {
+
+    private static final long serialVersionUID = 7L;
     private Integer studioId;
 
     private String studioName;
