@@ -4,7 +4,6 @@ import cn.xupt.ttms.dao.StudioDAO;
 import cn.xupt.ttms.idao.DAOFactory;
 import cn.xupt.ttms.model.Studio;
 import cn.xupt.ttms.service.StudioSrv;
-import com.sun.corba.se.impl.ior.StubIORImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,7 +66,8 @@ public class StudioServlet extends HttpServlet {
         if (method.equals("studioDelete")) {
             int studioid = Integer.parseInt(request.getParameter("studioid"));
             System.out.println("执行studioDelete...");
-            boolean isSuc = new StudioSrv().delete(studioid);
+            boolean isSuc = false;
+//            isSuc = new StudioSrv().delete(studioid);
             System.out.println("删除编号为" + studioid + "，是否成功？" + isSuc);
 
             List<Studio> studiosList = new StudioSrv().findStudioAll();
@@ -78,8 +78,7 @@ public class StudioServlet extends HttpServlet {
 
         }
 
-        if(method.equals("add"))
-        {
+        if (method.equals("add")) {
 
             System.out.println("正在执行add");
             Studio studio = new Studio();
@@ -103,38 +102,27 @@ public class StudioServlet extends HttpServlet {
             request.getSession().setAttribute("studioList", list2);
             // request.getSession().setAttribute("studioList", list3);
             request.getRequestDispatcher("menu.jsp").forward(request, response);
-        }
-        else
-        if(method.equals("searchById"))
-        {
+        } else if (method.equals("searchById")) {
             System.out.println("进入searchById");
             int studioid = Integer.parseInt(request.getParameter("studioid"));
-            if(studioid > 0)
-            {
+            if (studioid > 0) {
                 System.out.println(studioid);
                 Studio studio = new StudioSrv().findStudioById(studioid);
                 request.setAttribute("studio", studio);
-                try
-                {
+                try {
                     System.out.println(studioid);
                     request.getRequestDispatcher("studio.jsp").forward(request,
                             response);
-                }
-                catch(Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
-        }
-        else
-        if(method.equals("searchByPage"))
-        {
+        } else if (method.equals("searchByPage")) {
 
             int currentPage = 1; // 当前页默认为第一页
             String strpage = request.getParameter("currentPage"); // 获取前台传入当前页
-            if(strpage != null && !strpage.equals(""))
-            {
+            if (strpage != null && !strpage.equals("")) {
                 currentPage = Integer.parseInt(strpage) < 1 ? 1
                         : Integer.parseInt(strpage); // 将字符串转换成整型
             }
@@ -155,25 +143,21 @@ public class StudioServlet extends HttpServlet {
             request.setAttribute("allPageCount", allPageCount);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("search_studio_name", studio_name);
-            try
-            {
+            try {
                 request.getRequestDispatcher("studio.jsp")
                         .forward(request, response);
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
-        if(method.equals("studioupdate"))
-        {
+        if (method.equals("studioupdate")) {
             System.out.print("正在执行studioupdate的select");
 
             StudioDAO dao = (StudioDAO) DAOFactory.createStudioDAO();
 
             List<Studio> studiolist = new StudioSrv().findStudioAll();
-            // 打印 StudioSrv().findStudioById(studioid)的信息
+//             打印 StudioSrv().findStudioById(studioid)的信息
             request.setAttribute("studiolist", studiolist);
             System.out.println("传递搜索结果");
             request.getRequestDispatcher("studio.jsp").forward(request, response);

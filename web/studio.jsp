@@ -109,6 +109,9 @@
                         for (int i = 0; i < studioList.size(); i++) {
             %>
             <tr>
+                <td hidden style="text-align: center">
+                    <%=studioList.get(i).getStudioId()%>
+                </td>
                 <td style="text-align: center">
                     <%=studioList.get(i).getStudioName()%>
                 </td>
@@ -164,11 +167,11 @@
                     <%--<p style="display: inline;"></p></h4>--%>
                     <h4>名称：<input id="studioname" type="text" class="name" placeholder="输入中文" onblur="checkName()">
                         <p style="display: inline;"></p></h4>
-                    <h4>行数：<input id="studiorow" type="text" class="row" placeholder="输入1到20的整数" onblur="checkCol()">
+                    <h4>行数：<input id="studiorow" type="text" class="hang" placeholder="输入1到20的整数" onblur="checkRow()">
                         <p style="display: inline;"></p></h4>
                     <h4>列数：<input id="studiocol" type="text" class="col" placeholder="输入1到20的整数" onblur="checkCol()">
                         <p style="display: inline;"></p></h4>
-                    <h4>状态：<input id="studiostatus" type="text" class="col" placeholder="1或0" onblur="checkCol()">
+                    <h4>状态：<input id="studiostatus" type="text" class="status" placeholder="1为已安排，0为未安排" onblur="checkStatus()">
                         <p style="display: inline;"></p></h4>
                 </div>
 
@@ -271,48 +274,64 @@
     var searchAudio = function (btn) {
         var tr = btn.parentNode.parentNode;
         var td1 = tr.cells[0];
-        document.getElementById("name").value = tr.cells[0].innerHTML;
-        document.getElementById("row").value = tr.cells[1].innerHTML;
-        document.getElementById("col").value = tr.cells[2].innerHTML;
-        document.getElementById("status").value = tr.cells[3].innerHTML;
+        document.getElementById("name").value = tr.cells[1].innerHTML;
+        document.getElementById("row").value = tr.cells[2].innerHTML;
+        document.getElementById("col").value = tr.cells[3].innerHTML;
+        document.getElementById("status").value = tr.cells[4].innerHTML;
 
     }
 
 
     function checkRow() {
         var reg = /^[1-9]{1,2}$/;
-        var row = $(".addrow");
+        var row = $(".hang");
         if (!reg.test(row.val())) {
 
-            $(".row+p").html("<img src='../../image/falseCheck.png'>");
+            $(".hang+p").html("<img src='../../images/falseCheck.png'>");
             row.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".row+p").html("<img src='../../image/trueCheck.png'>");
+            $(".hang+p").html("<img src='../../images/trueCheck.png'>");
             return true;
         }
     }
 
+    function  checkStatus() {
+        var status = $('.status');
+        if(status.val() == 1 || status.val() == 0 || status.val() == -1)
+        {
+           // alert("yes");
+            $(".status+p").html("<img src='../../images/trueCheck.png'>");
+            return true;
+        }
+        else {
+//
+            $(".status+p").html("<img src='../../images/falseCheck.png'>");
+            status.focus();
+            return false;
+        }
+
+    }
     function checkCol() {
         var reg = /^[1-9]{1,2}$/;
         var col = $(".col");
         if (!reg.test(col.val())) {
 
-            $(".col+p").html("<img src='../image/falseCheck.png'>");
+            $(".col+p").html("<img src='../images/falseCheck.png'>");
             col.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".col+p").html("<img src='../image/trueCheck.png'>");
+            $(".col+p").html("<img src='../images/trueCheck.png'>");
             return true;
         }
     }
 
     function checkAll() {
-        if (!checkNum() || !checkName() || !checkCol() || !checkRow())
+        if (!checkNum() || !checkName() || !checkCol() || !checkRow() || !checkStatus())
             return false;
         else
             return true;
@@ -324,13 +343,13 @@
         var num = $(".name");
         if (!reg.test(name.val())) {
 
-            $(".name+p").html("<img src='../image/falseCheck.png'>");
+            $(".name+p").html("<img src='../images/falseCheck.png'>");
             num.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".name+p").html("<img src='../image/trueCheck.png'>");
+            $(".name+p").html("<img src='../images/trueCheck.png'>");
             return true;
         }
 
@@ -340,18 +359,16 @@
 
     function checkName() {
         var reg = /^[\u0391-\uFFE5]+$/;
-
-
-        var name = $(".row");
+        var name = $(".name");
         if (!reg.test(name.val())) {
 
-            $(".row+p").html("<img src='../image/falseCheck.png'>");
+            $(".name+p").html("<img src='../images/falseCheck.png'>");
             name.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".row+p").html("<img src='../image/trueCheck.png'>");
+            $(".name+p").html("<img src='../images/trueCheck.png'>");
             return true;
         }
     }
