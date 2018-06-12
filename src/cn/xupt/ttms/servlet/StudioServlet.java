@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/studioServlet")
+@WebServlet(name = "studioServlet",urlPatterns = "/studioServlet")
 public class StudioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -82,26 +82,28 @@ public class StudioServlet extends HttpServlet {
 
             System.out.println("正在执行add");
             Studio studio = new Studio();
+
+            boolean isSucc = false;
             String studioname = request.getParameter("studioname");
-            int studiorowcount = Integer.parseInt(request.getParameter("studiorowcount"));
-            int studiocolcount = Integer.parseInt(request.getParameter("studiocolcount"));
+            int studiorowcount = Integer.parseInt(request.getParameter("studiorow"));
+            int studiocolcount = Integer.parseInt(request.getParameter("studiocol"));
             String studiointroduct = request.getParameter("studiointroduct");
-            int studioflag = Integer.parseInt(request.getParameter("studioflag"));
+            int studioflag = Integer.parseInt(request.getParameter("studiostatus"));
             System.out.println("正在执行add studioflag输出为" + studioflag);
             studio.setStudioName(studioname);
             studio.setStudioRowCount(studiorowcount);
             studio.setStudioColCount(studiocolcount);
             studio.setStudioIntroduction(studiointroduct);
             studio.setStudioFlag(studioflag);
-            System.out.println(studio);
-//            boolean succ = new StudioSrv().insert(studio);
+//            isSucc = new StudioSrv().insert(studio);
+            System.out.println(studio + ",是否成功?" + isSucc);
 
             request.setAttribute("studio", studio);
             List<Studio> list2 = new StudioSrv().findStudioAll();
 
             request.getSession().setAttribute("studioList", list2);
             // request.getSession().setAttribute("studioList", list3);
-            request.getRequestDispatcher("menu.jsp").forward(request, response);
+            request.getRequestDispatcher("studio.jsp").forward(request, response);
         } else if (method.equals("searchById")) {
             System.out.println("进入searchById");
             int studioid = Integer.parseInt(request.getParameter("studioid"));
