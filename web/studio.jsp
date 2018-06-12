@@ -59,8 +59,8 @@
 </button>
 <button>
     <form action="/studioServlet?method=searchByPage" method="post">
-
-        <input type="submit" class="layui-btn" value="查询所有">
+        <input type="submit" class="layui-btn" value="查询所有"/>
+    </form>
 </button>
 
 <form onsubmit="highlight(this.s.value);return false;" style="float: right">
@@ -69,214 +69,212 @@
            style="margin-right: 20px;font-size: 20px;background: #508675;color: #FFFFFF"/>
 </form>
 
+<form action="/studioServlet" method="get">
+    <div id="page1">
+        <table class="layui-table" lay-skin="nob" lay-even="" style="text-align: center;">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col width="150">
+                <col width="150">
+                <col width="200">
+            </colgroup>
+            <thead>
+            <tr style="text-align: center">
+                <td>名称</td>
+                <td>行数</td>
+                <td>列数</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+            </thead>
 
-<div id="page1">
-    <table class="layui-table" lay-skin="nob" lay-even="" style="text-align: center;">
-        <colgroup>
-            <col width="150">
-            <col width="200">
-            <col width="150">
-            <col width="150">
-            <col width="200">
-        </colgroup>
-        <thead>
-        <tr style="text-align: center">
-            <td>名称</td>
-            <td>行数</td>
-            <td>列数</td>
-            <td>状态</td>
-            <td>操作</td>
-        </tr>
-        </thead>
-
-        <%--//填充数据--%>
-        <%
-            int currentPage = 1;  //当前页
-            int allCount = 0;     //总记录数
-            int allPageCount = 0; //总页数
-            Studio Studio = null;
-            //查看request中是否有currentPage信息，如没有，则说明首次访问该页
-            if (request.getAttribute("allStudio") != null) {
-                //获取Action返回的信息
-                currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
-                ArrayList<Studio> studioList = (ArrayList<Studio>) request.getAttribute("allStudio");
-                allCount = ((Integer) request.getAttribute("allCount")).intValue();
-                allPageCount = ((Integer) request.getAttribute("allPageCount")).intValue();
-
-
-                if (studioList != null && studioList.size() > 0) {
-
-                    for (int i = 0; i < studioList.size(); i++) {
-                        out.println("<tr>");
-        %>
-        <%--<th><%=studioList.get(i).getStudioId()%>--%>
-        <%--</th>--%>
-        <th><%=studioList.get(i).getStudioName()%>
-        </th>
-        <th><%=studioList.get(i).getStudioRowCount()%>
-        </th>
-        <th><%=studioList.get(i).getStudioColCount()%>
-        <%--</th>--%>
-        <%--<th><%=studioList.get(i).getStudioIntroduction()%>--%>
-        <%--</th>--%>
-
-        <%--<!-- 这里要对演出厅的状态进行判断输出* -->--%>
-
-        <th><%=studioList.get(i).getStudioFlag()%>
-        </th>
-
-        <%--</tr>--%>
-
-        <%--</tr>--%>
-
-        <td>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reviseAudio"
-                    onclick="searchAudio(this)" style="border-radius: 5px">修改
-            </button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteSource"
-                    style="border-radius: 5px">删除
-            </button>
-        </td>
-        <%--<th><a href="/TestWeb/StudioServlet?method=searchById&studioid=<%=studioList.get(i).getStudioId()%>">修改</a></th>--%>
-        <%--<th>--%>
-            <%--<a href="/TestWeb/StudioServlet?method=delete&studioid=<%=studioList.get(i).getStudioId()%>&studio_name=${search_studio_name}">删除</a>--%>
-        <%--</th>--%>
-        <%} %>
+            <%--//填充数据--%>
+            <%
+                int currentPage = 1;  //当前页
+                int allCount = 0;     //总记录数
+                int allPageCount = 0; //总页数
+                Studio Studio = null;
+                //查看request中是否有currentPage信息，如没有，则说明首次访问该页
+                if (request.getAttribute("allStudio") != null) {
+                    //获取Action返回的信息
+                    currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
+                    ArrayList<Studio> studioList = (ArrayList<Studio>) request.getAttribute("allStudio");
+                    allCount = ((Integer) request.getAttribute("allCount")).intValue();
+                    allPageCount = ((Integer) request.getAttribute("allPageCount")).intValue();
 
 
-        <%
-            }
-        %>
-        </tbody>
-        <%
-            }
-        %>
-    </table>
-</div>
+                    if (studioList != null && studioList.size() > 0) {
 
+                        for (int i = 0; i < studioList.size(); i++) {
+            %>
+            <tr>
+                <td style="text-align: center">
+                    <%=studioList.get(i).getStudioName()%>
+                </td>
+                <td style="text-align: center">
+                    <%=studioList.get(i).getStudioRowCount()%>
+                </td>
+                <td style="text-align: center">
+                    <%=studioList.get(i).getStudioColCount()%>
+                </td>
+                <td style="text-align: center">
+                    <%=studioList.get(i).getStudioFlag()%>
+                </td>
+                <td style="text-align: center">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reviseAudio"
+                            onclick="searchAudio(this)" style="border-radius: 5px">修改
+                    </button>
+                    <button type="button" class="btn btn-danger" data-target="#deleteSource" style="border-radius: 5px">
+                        <a href="/studioServlet?method=studioDelete&studioid=<%=studioList.get(i).getStudioId()%>">删除</a>
+                    </button>
+
+                </td>
+                <%
+                    }
+                %>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+            <%
+                }
+            %>
+        </table>
+    </div>
+</form>
 
 <!--添加演出厅-->
-<div class="modal fade bs-example-modal-lg" id="addAudio" tabindex="-1" role="dialog" aria-labelledby="addAudio"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    添加演出厅
-                </h4>
-            </div>
-            <div class="modal-body">
-                <%--<h4>编号：<input type="text" class="number" placeholder="输入2-10位数字" onblur="checkNum()">--%>
+<form action="/studioServlet" method="get">
+    <div class="modal fade bs-example-modal-lg" id="addAudio" tabindex="-1" role="dialog" aria-labelledby="addAudio"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加演出厅
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <%--<h4>编号：<input type="text" class="number" placeholder="输入2-10位数字" onblur="checkNum()">--%>
                     <%--<p style="display: inline;"></p></h4>--%>
-                <h4>名称：<input type="text" class="name" placeholder="输入中文" onblur="checkName()">
-                    <p style="display: inline;"></p></h4>
-                <h4>行数：<input type="text" class="addrow" placeholder="输入1到20的整数" onblur="checkCol()">
-                    <p style="display: inline;"></p></h4>
-                <h4>列数：<input type="text" class="col" placeholder="输入1到20的整数" onblur="checkCol()">
-                    <p style="display: inline;"></p></h4>
+                    <h4>名称：<input id="studioname" type="text" class="name" placeholder="输入中文" onblur="checkName()">
+                        <p style="display: inline;"></p></h4>
+                    <h4>行数：<input id="studiorow" type="text" class="row" placeholder="输入1到20的整数" onblur="checkCol()">
+                        <p style="display: inline;"></p></h4>
+                    <h4>列数：<input id="studiocol" type="text" class="col" placeholder="输入1到20的整数" onblur="checkCol()">
+                        <p style="display: inline;"></p></h4>
+                    <h4>状态：<input id="studiostatus" type="text" class="col" placeholder="1或0" onblur="checkCol()">
+                        <p style="display: inline;"></p></h4>
+                </div>
 
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <input type="hidden" name="method" value="add">
+                    <button type="submit" class="btn btn-primary">
+                        保存
+                    </button>
+                </div>
             </div>
 
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary">
-                    保存
-                </button>
-            </div>
         </div>
-
     </div>
-</div>
-
+</form>
 
 <!--修改演出厅-->
-<div class="modal fade bs-example-modal-lg" id="reviseAudio" tabindex="-1" role="dialog" aria-labelledby="addAudio"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="revise">
-                    修改演出厅
-                </h4>
+<form action="/studioServlet" method="get">
+    <div class="modal fade bs-example-modal-lg" id="reviseAudio" tabindex="-1" role="dialog" aria-labelledby="addAudio"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="revise">
+                        修改演出厅
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h4>名称：<input type="text" id="name">
+                            <p style="display: inline"></p></h4>
+                    </div>
+                    <div>
+                        <h4>行数：<input type="text" id="row">
+                            <p style="display: inline"></p></h4>
+                    </div>
+                    <div>
+                        <h4>列数：<input type="text" id="col">
+                            <p style="display: inline"></p></h4>
+                    </div>
+                    <div>
+                        <h4>状态：<input type="text" id="status">
+                            <p style="display: inline"></p></h4>
+                    </div>
+                    <input type="hidden" name="method" value="studioupdate">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">
+                        保存
+                    </button>
+                </div>
             </div>
-            <div class="modal-body">
 
-                <div>
-                    <h4>名称：<input type="text" id="num">
-                        <p style="display: inline"></p></h4>
-                </div>
-                <div>
-                    <h4>行数：<input type="text" id="name">
-                        <p style="display: inline"></p></h4>
-                </div>
-                <div>
-                    <h4>列数：<input type="text" id="row">
-                        <p style="display: inline"></p></h4>
-                </div>
-                <div>
-                    <h4>状态：<input type="text" id="col">
-                        <p style="display: inline"></p></h4>
-                </div>
-
-            </div>
-
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary" onclick="submit()">
-                    保存
-                </button>
-            </div>
         </div>
-
     </div>
-</div>
+
+</form>
 
 
 <!--弹出删除警告窗口-->
-<div class="modal fade" id="deleteSource" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="gridSystemModalLabel">警告</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    确定要删除该资源？删除后不可恢复！
+<form action="/studioServlet" method="get">
+    <div class="modal fade" id="deleteSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">警告</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        确定要删除该资源？删除后不可恢复！
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                    <button type="submit" class="btn btn-xs btn-danger">确 认</button>
+
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                <button type="button" class="btn btn-xs btn-danger">保 存</button>
-            </div>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-</div>
+    <!-- /.modal -->
+    </div>
+</form>
 
 <script src="/jquery/jquery-1.11.1.min.js"></script>
 <script>
     var searchAudio = function (btn) {
         var tr = btn.parentNode.parentNode;
         var td1 = tr.cells[0];
-        document.getElementById("num").value = tr.cells[0].innerHTML;
-        document.getElementById("name").value = tr.cells[1].innerHTML;
-        document.getElementById("row").value = tr.cells[2].innerHTML;
-        document.getElementById("col").value = tr.cells[3].innerHTML;
+        document.getElementById("name").value = tr.cells[0].innerHTML;
+        document.getElementById("row").value = tr.cells[1].innerHTML;
+        document.getElementById("col").value = tr.cells[2].innerHTML;
+        document.getElementById("status").value = tr.cells[3].innerHTML;
 
     }
 
@@ -302,13 +300,13 @@
         var col = $(".col");
         if (!reg.test(col.val())) {
 
-            $(".col+p").html("<img src='../../image/falseCheck.png'>");
+            $(".col+p").html("<img src='../image/falseCheck.png'>");
             col.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".col+p").html("<img src='../../image/trueCheck.png'>");
+            $(".col+p").html("<img src='../image/trueCheck.png'>");
             return true;
         }
     }
@@ -323,16 +321,16 @@
 
     function checkNum() {
         var reg = /^[0-9]{2,10}$/;
-        var num = $(".number");
-        if (!reg.test(num.val())) {
+        var num = $(".name");
+        if (!reg.test(name.val())) {
 
-            $(".number+p").html("<img src='../../image/falseCheck.png'>");
+            $(".name+p").html("<img src='../image/falseCheck.png'>");
             num.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".number+p").html("<img src='../../image/trueCheck.png'>");
+            $(".name+p").html("<img src='../image/trueCheck.png'>");
             return true;
         }
 
@@ -344,20 +342,18 @@
         var reg = /^[\u0391-\uFFE5]+$/;
 
 
-        var name = $(".name");
+        var name = $(".row");
         if (!reg.test(name.val())) {
 
-            $(".name+p").html("<img src='../../image/falseCheck.png'>");
+            $(".row+p").html("<img src='../image/falseCheck.png'>");
             name.focus();
             return false;
         }
         else {
 //            alert("yes");
-            $(".name+p").html("<img src='../../image/trueCheck.png'>");
+            $(".row+p").html("<img src='../image/trueCheck.png'>");
             return true;
         }
-
-
     }
 </script>
 </body>

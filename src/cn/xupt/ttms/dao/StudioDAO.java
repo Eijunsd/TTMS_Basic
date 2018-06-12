@@ -36,7 +36,7 @@ public class StudioDAO implements IStudioDAO {
      */
     @SuppressWarnings("finally")
     public ArrayList<Studio> findStudioByPage(int cPage) {
-        System.out.println("在StudioDAO中调用findStudioByPage开始...");
+//        System.out.println("在StudioDAO中调用findStudioByPage开始...");
         currentPage = cPage;
         ArrayList<Studio> list = new ArrayList<Studio>();
 
@@ -75,16 +75,16 @@ public class StudioDAO implements IStudioDAO {
 
             while (rs.next()) {
                 studio = new Studio();
-//                studio.setStudioId(rs.getInt("studio_id"));
+                studio.setStudioId(rs.getInt("studio_id"));
                 studio.setStudioName(rs.getString("studio_name"));
                 studio.setStudioRowCount(rs.getInt("studio_row_count"));
                 studio.setStudioColCount(rs.getInt("studio_col_count"));
                 studio.setStudioFlag(rs.getInt("studio_flag"));
-                System.out.println(studio);
+//                System.out.println(studio);
                 // 将该用户信息插入列表
                 list.add(studio);
             }
-            System.out.println("在StudioDAO中调用findStudioByPage结束...");
+//            System.out.println("在StudioDAO中调用findStudioByPage结束...");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -204,6 +204,7 @@ public class StudioDAO implements IStudioDAO {
         try
         {
             // 删除子某个用户
+            System.out.println(studioId);
             String sql = "delete from studio where studio_id=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, studioId);

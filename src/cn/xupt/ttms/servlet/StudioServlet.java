@@ -4,6 +4,7 @@ import cn.xupt.ttms.dao.StudioDAO;
 import cn.xupt.ttms.idao.DAOFactory;
 import cn.xupt.ttms.model.Studio;
 import cn.xupt.ttms.service.StudioSrv;
+import com.sun.corba.se.impl.ior.StubIORImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,14 +66,15 @@ public class StudioServlet extends HttpServlet {
 
         if (method.equals("studioDelete")) {
             int studioid = Integer.parseInt(request.getParameter("studioid"));
+            System.out.println("执行studioDelete...");
             boolean isSuc = new StudioSrv().delete(studioid);
             System.out.println("删除编号为" + studioid + "，是否成功？" + isSuc);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
 
             List<Studio> studiosList = new StudioSrv().findStudioAll();
 
             request.getSession().setAttribute("studiosList", studiosList);
 
+            request.getRequestDispatcher("studio.jsp").forward(request, response);
 
         }
 
@@ -92,7 +94,8 @@ public class StudioServlet extends HttpServlet {
             studio.setStudioColCount(studiocolcount);
             studio.setStudioIntroduction(studiointroduct);
             studio.setStudioFlag(studioflag);
-            boolean succ = new StudioSrv().insert(studio);
+            System.out.println(studio);
+//            boolean succ = new StudioSrv().insert(studio);
 
             request.setAttribute("studio", studio);
             List<Studio> list2 = new StudioSrv().findStudioAll();
@@ -163,9 +166,9 @@ public class StudioServlet extends HttpServlet {
             }
 
         }
-        if(method.equals("studioSeat"))
+        if(method.equals("studioupdate"))
         {
-            System.out.print("正在执行studioseat的select");
+            System.out.print("正在执行studioupdate的select");
 
             StudioDAO dao = (StudioDAO) DAOFactory.createStudioDAO();
 
@@ -173,7 +176,7 @@ public class StudioServlet extends HttpServlet {
             // 打印 StudioSrv().findStudioById(studioid)的信息
             request.setAttribute("studiolist", studiolist);
             System.out.println("传递搜索结果");
-            request.getRequestDispatcher("seat.jsp").forward(request, response);
+            request.getRequestDispatcher("studio.jsp").forward(request, response);
         }
 
     }

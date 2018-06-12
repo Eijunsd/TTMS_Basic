@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ChenZi
-  Date: 2018/6/11
-  Time: 10:43
+  Date: 2018/6/12
+  Time: 00:06
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,11 +13,11 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="layui-v2.1.4/layui-v2.1.4/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="layui-v2.1.4/layui-v2.1.4/layui/css/layui.css" media="all">
     <!--<link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />-->
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/h-ui.admin/css/H-ui.admin.css" />
-    <link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -113,6 +113,7 @@
 
             /*定义计时器，控制图片移动*/
             showtime();
+
             function showtime() {
                 timer = setInterval(function () {
                     if (isgo == false) {
@@ -216,7 +217,7 @@
             <span title="0" class="arrow" style="float: right">></span>
         </div>
 
-        <ul class="ul_img" >
+        <ul class="ul_img">
             <li class="li_img"><img src="../../image/zhuluoji.jpg"></li>
             <li class="li_img"><img src="../../image/chaoshikong.jpg"></li>
             <li class="li_img"><img src="../../image/come.jpg"></li>
@@ -233,23 +234,25 @@
 </div>
 
 <style type="text/css">
-    .tab-control-item{
+    .tab-control-item {
         font-size: medium;
         margin-left: 50px;
     }
 
-    .tab-content{
+    .tab-content {
         width: 1050px;
         height: 282px;
     }
-    .movie-card-wrap{
+
+    .movie-card-wrap {
         display: inline-block;
         width: 160px;
         height: 282px;
         margin-left: 40px;
         position: inherit;
     }
-    .movie-card-info{
+
+    .movie-card-info {
         display: none;
         position: absolute;
         top: 0;
@@ -259,23 +262,27 @@
         padding-left: 25px;
 
     }
-    .movie-card-buy{
+
+    .movie-card-buy {
         background: red;
         height: 30px;
         width: 160px;
         display: block;
         text-align: center;
     }
+
     card-info .movie-card-mask {
         width: 160px;
         height: 225px;
         background-color: #000;
     }
-    .movie-card-poster{
+
+    .movie-card-poster {
         width: 160px;
         height: 224px;
     }
-    .movie-card-name{
+
+    .movie-card-name {
         display: none;
         position: absolute;
         height: 56px;
@@ -283,25 +290,26 @@
         bottom: 0;
     }
 </style>
+<%--存取数据--%>
+<script>
+    function savedate() {
+        sessionStorage.setItem()
+    }
+</script>
 <div class="center-wrap" style="margin-top: 80px">
     <div class="tab-control tab-movie-tit">
         <a class="tab-control-item" href="#">正在热映(33)</a>
     </div>
 </div>
 <div class="tab-content">
-    <!-- 正在热映 -->
     <div class="tab-movie-list" style="width: 1050px">
         <div class="movie-card-wrap">
-            <a href="movieProduce.html" class="movie-card">
+            <a href="sale.jsp" class="movie-card">
                 <div class="movie-card-tag"><i class="t-"></i></div>
                 <div class="movie-card-poster">
                     <img width="160" height="224" src="../../image/shenhai.jpg">
                 </div>
-                <!--<div class="movie-card-name" >-->
-                <!--<span class="bt-l">深海越狱</span>-->
-                <!--<span class="bt-r">6.8</span>-->
-                <!--</div>-->
-                <div class="movie-card-info" >
+                <div class="movie-card-info">
                     <div class="movie-card-mask"></div>
                     <div class="movie-card-list">
                         <span>导演：帕夏&middot;帕特里基</span>
@@ -309,12 +317,13 @@
                         <span>类型：动作,冒险</span>
                         <span>地区：美国</span>
                         <span>语言：英语</span>
-                        <span>片长：104分钟</span>                        </div>
+                        <span>片长：104分钟</span></div>
                 </div>
             </a>
-            <a href="movieProduce.html" class="movie-card-buy">选座购票</a>
+            <a href="sale.jsp" class="movie-card-buy">选座购票</a>
         </div>
     </div>
+
 
 </div>
 </div>
