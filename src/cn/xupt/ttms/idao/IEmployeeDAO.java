@@ -11,7 +11,7 @@ public interface IEmployeeDAO {
 
     boolean update(Employee employee);
 
-    boolean delete(Employee employee);
+    boolean delete(String employeeNo);
 
     Employee findByEmpId(Employee employee);
 
@@ -22,5 +22,14 @@ public interface IEmployeeDAO {
     List<Employee> findByEmpName(String empName);
 
     Employee findByEmpNo(String empNo);
+
+    List<Employee> findEmployeeByPage(int currentPage, String employeName);
+
+    public int getAllCount();
+
+    public int getAllPageCount();
+
+    public int getCurrentPage();
+
 
 }

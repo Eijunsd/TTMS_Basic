@@ -9,7 +9,7 @@ public interface IUserDAO {
     public boolean insert(User user);
 
     // É¾
-     public boolean delete(int User_);
+     public boolean delete(int User);
 
     // ¸Ä
     public boolean update(User user);
@@ -19,5 +19,11 @@ public interface IUserDAO {
 
     public User findUserByNo(String employeeNo);
 
-    public List<User> searchByPage(int userId);
+    public int getAllCount();
+
+    public int getAllPageCount();
+
+    public int getCurrentPage();
+
+    public List<User> findUserByPage(int currentPage, String employeeNo);
 }

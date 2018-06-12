@@ -7,10 +7,31 @@ import cn.xupt.ttms.utils.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements IUserDAO {
+
+    public static final int PAGE_SIZE = 6; // 每页显示条数
+    private static int allCount; // 数据库中条数
+    private static int allPageCount; // 总页数
+    private static int currentPage; // 当前页
+
+    public int getAllCount() {
+        return allCount;
+    }
+
+    public int getAllPageCount() {
+        return allPageCount;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+
+
     /**
      * 存储用户信息
      * @return 成功与否boolean
@@ -50,7 +71,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public boolean delete(int User_) {
+    public boolean delete(int User) {
         return false;
     }
 
@@ -181,7 +202,64 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public List<User> searchByPage(int userId) {
-        return null;
+    public List<User> findUserByPage(int currentPage, String employeeNo) {
+        currentPage = currentPage;
+        ArrayList<User> list = new ArrayList<User>();
+
+        // 若未指定查找某人，则默认全查
+        if (null == employeeNo || employeeNo.equals("null")) {
+            employeeNo = "";
+        }
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            // 获取记录总数
+            String sql1 = "select count(emp_no) as AllRecord from user where emp_no like ?";
+            conn = ConnectionManager.getInstance().getConnection();
+            pstmt = conn.prepareStatement(sql1);
+            pstmt.setString(1, "%" + employeeNo + "%");
+            System.out.println("-->" + pstmt);
+            rs = pstmt.executeQuery();
+            if (rs.next())
+                allCount = rs.getInt("AllRecord");
+            rs.close();
+            pstmt.close();
+
+            System.out.println(allCount);
+            // 记算总页数
+            allPageCount = (allCount + PAGE_SIZE - 1) / PAGE_SIZE;
+
+            // 如果当前页数大于总页数，则赋值为总页数
+            if (allPageCount > 0 && currentPage > allPageCount)
+                currentPage = allPageCount;
+
+            // 获取第currentPage页数据
+            String sql2 = "select * from user where emp_no like ? limit ?,?";
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setString(1, "%" + employeeNo + "%");
+            pstmt.setInt(2, PAGE_SIZE * (currentPage - 1));
+            pstmt.setInt(3, PAGE_SIZE);
+            System.out.println(pstmt);
+            rs = pstmt.executeQuery();
+            User user = null;
+            while (rs.next()) {
+                user = new User();
+                user.setEmpNo(rs.getString("emp_no"));
+                user.setEmpPass(rs.getString("emp_pass"));
+                user.setType(rs.getInt("type"));
+                user.setHeadPath(rs.getString("head_path"));
+
+                // 将该用户信息插入列表
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(rs, pstmt, conn);
+            return list;
+        }
     }
+
 }

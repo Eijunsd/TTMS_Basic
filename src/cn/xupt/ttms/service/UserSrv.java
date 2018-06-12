@@ -5,6 +5,7 @@ import cn.xupt.ttms.idao.IUserDAO;
 import cn.xupt.ttms.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserSrv {
     private IUserDAO userDAO = DAOFactory.createUserDAO();
@@ -14,7 +15,9 @@ public class UserSrv {
     }
 
     // É¾
-    // public boolean delete(int User_);
+    public boolean delete(int UserId) {
+        return userDAO.delete(UserId);
+    }
 
     // ¸Ä
     public boolean update(User user){
@@ -28,5 +31,21 @@ public class UserSrv {
 
     public User findUserByNo(String employeeNo){
         return userDAO.findUserByNo(employeeNo);
+    }
+
+    public int getAllCount() {
+        return userDAO.getAllCount();
+    }
+
+    public int getAllPageCount() {
+        return userDAO.getAllPageCount();
+    }
+
+    public int getCurrentPage() {
+        return userDAO.getCurrentPage();
+    }
+
+    public List<User> findUserByPage(int currentPage, String employeeNo) {
+        return userDAO.findUserByPage(currentPage, employeeNo);
     }
 }
