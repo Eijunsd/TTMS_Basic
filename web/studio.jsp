@@ -165,13 +165,14 @@
                 <div class="modal-body">
                     <%--<h4>编号：<input type="text" class="number" placeholder="输入2-10位数字" onblur="checkNum()">--%>
                     <%--<p style="display: inline;"></p></h4>--%>
-                    <h4>名称：<input id="studioname" type="text" class="name" placeholder="输入中文" onblur="checkName()">
+                    <h4>名称：<input name="studioname" type="text" class="name" placeholder="输入中文" onblur="checkName()">
                         <p style="display: inline;"></p></h4>
-                    <h4>行数：<input id="studiorow" type="text" class="hang" placeholder="输入1到20的整数" onblur="checkRow()">
+                    <h4>行数：<input name="studiorow" type="text" class="hang" placeholder="输入1到20的整数" onblur="checkRow()">
                         <p style="display: inline;"></p></h4>
-                    <h4>列数：<input id="studiocol" type="text" class="col" placeholder="输入1到20的整数" onblur="checkCol()">
+                    <h4>列数：<input name="studiocol" type="text" class="col" placeholder="输入1到20的整数" onblur="checkCol()">
                         <p style="display: inline;"></p></h4>
-                    <h4>状态：<input id="studiostatus" type="text" class="status" placeholder="1为已安排，0为未安排" onblur="checkStatus()">
+                    <h4>状态：<input name="studiostatus" type="text" class="status" placeholder="1为已安排，0为未安排"
+                                  onblur="checkStatus()">
                         <p style="display: inline;"></p></h4>
                 </div>
 
@@ -180,7 +181,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
                     <input type="hidden" name="method" value="add">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" onblur="checkAll()">
                         保存
                     </button>
                 </div>
@@ -298,11 +299,10 @@
         }
     }
 
-    function  checkStatus() {
+    function checkStatus() {
         var status = $('.status');
-        if(status.val() == 1 || status.val() == 0 || status.val() == -1)
-        {
-           // alert("yes");
+        if (status.val() == 1 || status.val() == 0 || status.val() == -1) {
+            // alert("yes");
             $(".status+p").html("<img src='../../images/trueCheck.png'>");
             return true;
         }
@@ -314,6 +314,7 @@
         }
 
     }
+
     function checkCol() {
         var reg = /^[1-9]{1,2}$/;
         var col = $(".col");
@@ -332,9 +333,9 @@
 
     function checkAll() {
         if (!checkNum() || !checkName() || !checkCol() || !checkRow() || !checkStatus())
-            return false;
-        else
             return true;
+        else
+            return false;
     }
 
 
