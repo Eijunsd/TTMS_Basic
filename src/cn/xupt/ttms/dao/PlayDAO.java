@@ -71,6 +71,7 @@ public class PlayDAO implements IPlayDAO {
             pstmt.setString(1, "%" + play_name + "%");
             pstmt.setInt(2, PAGE_SIZE * (currentPage - 1));
             pstmt.setInt(3, PAGE_SIZE);
+            System.out.println(pstmt);
             rs = pstmt.executeQuery();
             Play play = null;
             //
@@ -83,8 +84,8 @@ public class PlayDAO implements IPlayDAO {
                 play.setPlayIntroduction(rs.getString("play_introduction"));
                 play.setPlayImage(rs.getString("play_image"));
                 play.setPlayTicketPrice(rs.getFloat("play_ticket_price"));
-                play.setPlayLength(rs.getInt("plat_length"));
-                play.setPlayStatus(rs.getInt("play_stauts"));
+                play.setPlayLength(rs.getInt("play_length"));
+                play.setPlayStatus(rs.getInt("play_status"));
 
                 // 将该用户信息插入列表
                 list.add(play);
@@ -147,6 +148,7 @@ public class PlayDAO implements IPlayDAO {
             String sql = "delete from play where play_id=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, playId);
+            System.out.println(pstmt);
             pstmt.executeUpdate();
             ConnectionManager.close(null, pstmt, con);
 
@@ -182,6 +184,7 @@ public class PlayDAO implements IPlayDAO {
             pstmt.setString(8, String.valueOf(play.getPlayStatus()));
             pstmt.setString(9, String.valueOf(play.getPlayId()));
 
+            System.out.println(pstmt);
 
             pstmt.executeUpdate();
             result = true;
@@ -216,6 +219,7 @@ public class PlayDAO implements IPlayDAO {
             // 获取所有用户数据:模糊查询
             pstmt = con.prepareStatement("select * from play where play_name like ?");
             pstmt.setString(1, "%" + playName + "%");// 拼接模糊查询串
+            System.out.println(pstmt);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -257,6 +261,7 @@ public class PlayDAO implements IPlayDAO {
             // 获取所有用户数据
             pstmt = con.prepareStatement("select * from play where play_id=?");
             pstmt.setInt(1, playId);
+            System.out.println(pstmt);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 // 如果有值的话再实例化
@@ -266,7 +271,7 @@ public class PlayDAO implements IPlayDAO {
                 info.setPlayLang(rs.getString("play_lang"));
                 info.setPlayName(rs.getString("play_name"));
                 info.setPlayIntroduction(rs.getString("play_introduction"));
-                info.setPlayImage(rs.getString("play_inage"));
+                info.setPlayImage(rs.getString("play_image"));
                 info.setPlayLength(rs.getInt("play_length"));
                 info.setPlayTicketPrice(rs.getFloat("play_ticket_price"));
                 info.setPlayStatus(rs.getInt("play_status"));

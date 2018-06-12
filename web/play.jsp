@@ -1,4 +1,5 @@
-<%--
+<%@ page import="cn.xupt.ttms.model.Play" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: ChenZi
   Date: 2018/6/12
@@ -291,41 +292,96 @@
     }
 </style>
 <%--存取数据--%>
-<script>
-    function savedate() {
-        sessionStorage.setItem()
-    }
-</script>
+
+<form action="/playServlet" method="post">
+    <input type="hidden" name="method" value="searchByPage">
+    <input type="submit" class="layui-btn" value="查询所有">
+</form>
 <div class="center-wrap" style="margin-top: 80px">
     <div class="tab-control tab-movie-tit">
         <a class="tab-control-item" href="#">正在热映(33)</a>
     </div>
 </div>
-<div class="tab-content">
-    <div class="tab-movie-list" style="width: 1050px">
-        <div class="movie-card-wrap">
-            <a href="sale.jsp" class="movie-card">
-                <div class="movie-card-tag"><i class="t-"></i></div>
-                <div class="movie-card-poster">
-                    <img width="160" height="224" src="../../image/shenhai.jpg">
+<form action="/playServlet" method="get">
+    <div class="tab-content">
+        <div class="tab-movie-list" style="width: 1050px">
+            <div class="movie-card-wrap">
+                <a href="sale.jsp" class="movie-card">
+                    <div class="movie-card-tag"><i class="t-"></i></div>
+                    <div class="movie-card-poster">
+                    <img width="160" height="224" src="../images/shenhai.jpg"/>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#reviseAudio"
+                                onclick="searchAudio(this)" style="border-radius: 5px">修改
+                        </button>
+                        <button type="button" class="btn btn-danger" data-target="#deleteSource" style="border-radius: 5px">
+                            <%--<a href="/studioServlet?method=studioDelete&studioid=<%=studioList.get(i).getStudioId()%>">删除</a>--%>
+                        </button>
                 </div>
-                <div class="movie-card-info">
-                    <div class="movie-card-mask"></div>
-                    <div class="movie-card-list">
-                        <span>导演：帕夏&middot;帕特里基</span>
-                        <span>主演：尚格&middot;云顿,杜夫&middot;龙格尔,杰思敏&middot;沃兹,帕特里克&middot;基尔帕特里克,阿尔&middot;萨皮恩扎,克里斯&middot;云顿</span>
-                        <span>类型：动作,冒险</span>
-                        <span>地区：美国</span>
-                        <span>语言：英语</span>
-                        <span>片长：104分钟</span></div>
-                </div>
-            </a>
-            <a href="sale.jsp" class="movie-card-buy">选座购票</a>
+
+
+                    <%
+                        int currentPage = 1; //当前页
+                        int allCount = 0; //总记录数
+                        int allPageCount = 0; //总页数
+                        Play play = null;
+                        //查看request中是否有currentPage信息，如没有，则说明首次访问该页
+                        if (request.getAttribute("allPlay") != null) {
+                            //获取Action返回的信息
+                            currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
+                            ArrayList<Play> playList = (ArrayList<Play>) request.getAttribute("allPlay");
+                            allCount = ((Integer) request.getAttribute("allCount")).intValue();
+                            allPageCount = ((Integer) request.getAttribute("allPageCount")).intValue();
+
+                            if (playList != null && playList.size() > 0) {
+                                for (int i = 0; i < playList.size(); i++) {
+//                                    out.println("<tr>");
+                    %>
+                    <th hidden><%=playList.get(i).getPlayId()%>
+                    </th>
+                    <th><%=playList.get(i).getPlayName()%>
+                    </th>
+                    <th><%=playList.get(i).getPlayType()%>
+                    </th>
+                    <th><%=playList.get(i).getPlayLength()%>
+                    </th>
+                    <th><%=playList.get(i).getPlayLang()%>
+                    </th>
+                    <th><%=playList.get(i).getPlayTicketPrice()%>
+                    </th>
+
+
+                    <th>
+                        <button><a href="/playServlet?method=searchById&playid=<%=playList.get(i).getPlayId()%>">修改</a>
+                        </button>
+                    </th>
+                    <th>
+                        <button><a
+                                href="/playServlet?method=delete&playid=<%=playList.get(i).getPlayId()%>&play_name=${search_play_name}">删除</a>
+                        </button>
+                    </th>
+                    </tr>
+                    <%
+                                }
+                            }
+                        }
+                    %>
+
+                </a>
+                <a href="sale.jsp" class="movie-card-buy">选座购票</a>
+            </div>
         </div>
     </div>
+</form>
+<script>
+    var searchAudio = function (btn) {
+        var tr = btn.parentNode.parentNode;
+        var td1 = tr.cells[0];
+        document.getElementById("name").value = tr.cells[1].innerHTML;
+        document.getElementById("row").value = tr.cells[2].innerHTML;
+        document.getElementById("col").value = tr.cells[3].innerHTML;
+        document.getElementById("status").value = tr.cells[4].innerHTML;
 
-
-</div>
-</div>
+    }
+</script>
 </body>
 </html>

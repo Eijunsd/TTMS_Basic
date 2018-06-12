@@ -7,6 +7,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <%--<meta http-equiv="refresh" content="0;url=/studioServlet?method=searchByPage"/>--%>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -57,9 +58,9 @@
         style="color: #8a6d3b;background: #FFFFFF;border-radius: 6px;margin-left: 20px;margin-top: 10px;margin-bottom: 20px">
     添加演出厅
 </button>
-<button>
+<button class="layui-btn-primary">
     <form action="/studioServlet?method=searchByPage" method="post">
-        <input type="submit" class="layui-btn" value="查询所有"/>
+        <input type="submit" class="btn btn-pri" value="查询所有"/>
     </form>
 </button>
 
@@ -207,19 +208,19 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <h4>名称：<input type="text" id="name">
+                        <h4>名称：<input type="text" id="name" name="name">
                             <p style="display: inline"></p></h4>
                     </div>
                     <div>
-                        <h4>行数：<input type="text" id="row">
+                        <h4>行数：<input type="text" id="row" name="row">
                             <p style="display: inline"></p></h4>
                     </div>
                     <div>
-                        <h4>列数：<input type="text" id="col">
+                        <h4>列数：<input type="text" id="col" name="col">
                             <p style="display: inline"></p></h4>
                     </div>
                     <div>
-                        <h4>状态：<input type="text" id="status">
+                        <h4>状态：<input type="text" id="status" name="status">
                             <p style="display: inline"></p></h4>
                     </div>
                     <input type="hidden" name="method" value="studioupdate">
@@ -228,6 +229,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
+                    <input type="hidden" name="method" value="studioupdate">
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">
                         保存
                     </button>
@@ -373,6 +375,7 @@
             return true;
         }
     }
+
 </script>
 </body>
 </html>

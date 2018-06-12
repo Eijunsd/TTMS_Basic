@@ -3,12 +3,13 @@ package cn.xupt.ttms.idao;
 import cn.xupt.ttms.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IUserDAO {
     public boolean insert(User user);
 
     // É¾
-    // public boolean delete(int User_);
+     public boolean delete(int User_);
 
     // ¸Ä
     public boolean update(User user);
@@ -17,4 +18,6 @@ public interface IUserDAO {
     public ArrayList<User> findUserAll();
 
     public User findUserByNo(String employeeNo);
+
+    public List<User> searchByPage(int userId);
 }

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO implements IUserDAO {
     /**
@@ -46,6 +47,11 @@ public class UserDAO implements IUserDAO {
             ConnectionManager.close(null, pstmt, con);
             return result;
         }
+    }
+
+    @Override
+    public boolean delete(int User_) {
+        return false;
     }
 
 
@@ -172,5 +178,10 @@ public class UserDAO implements IUserDAO {
             ConnectionManager.close(rs, pstmt, con);
             return info;
         }
+    }
+
+    @Override
+    public List<User> searchByPage(int userId) {
+        return null;
     }
 }

@@ -155,8 +155,24 @@ public class StudioServlet extends HttpServlet {
         }
         if (method.equals("studioupdate")) {
             System.out.print("正在执行studioupdate的select");
+            boolean isSucc = false;
 
+            int studioId = Integer.parseInt(request.getParameter("studioId"));
+            String studioname = request.getParameter("name");
+            int studiorowcount = Integer.parseInt(request.getParameter("row"));
+            int studiocolcount = Integer.parseInt(request.getParameter("col"));
+            String studiointroduct = request.getParameter("studiointroduct");
+            int studioflag = Integer.parseInt(request.getParameter("status"));
+
+            Studio studio = new Studio();
+            studio.setStudioId(studioId);
+            studio.setStudioName(studioname);
+            studio.setStudioRowCount(studiorowcount);
+            studio.setStudioColCount(studiocolcount);
+            studio.setStudioIntroduction(studiointroduct);
+            studio.setStudioFlag(studioflag);
             StudioDAO dao = (StudioDAO) DAOFactory.createStudioDAO();
+            dao.update(studio);
 
             List<Studio> studiolist = new StudioSrv().findStudioAll();
 //             打印 StudioSrv().findStudioById(studioid)的信息
