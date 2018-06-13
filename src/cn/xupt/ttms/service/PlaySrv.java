@@ -41,4 +41,16 @@ public class PlaySrv {
     public ArrayList<Play> findPlayByPage(int cPage, String play_name){
         return playDAO.getPlayByPage(cPage, play_name);
     }
+
+    public int getAllCount(){
+        return playDAO.getAllCount();
+    }
+
+    public int getAllPageCount(){
+        return playDAO.getAllPageCount();
+    }
+
+    public int getCurrentPage(){
+        return playDAO.getCurrentPage();
+    }
 }

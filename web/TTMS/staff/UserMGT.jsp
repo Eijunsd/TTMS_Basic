@@ -185,13 +185,13 @@
 <script>
     var modifyUser = function(btn){
         var tr = btn.parentNode.parentNode;
-        document.getElementById("num").value = tr.cells[1].innerHTML;
-        document.getElementById("pass").value = tr.cells[2].innerHTML;
-        document.getElementById("type").value = tr.cells[3].innerHTML;
+        document.getElementById("num").value = tr.cells[1].innerHTML.trim();
+        document.getElementById("pass").value = tr.cells[2].innerHTML.trim();
+        document.getElementById("type").value = tr.cells[3].innerHTML.trim();
     }
     var deleteUser = function (btn) {
         var tr = btn.parentNode.parentNode;
-        document.getElementById("empNo").value = tr.cells[1].innerHTML;
+        document.getElementById("empNo").value = tr.cells[1].innerHTML.trim();
     }
 </script>
 

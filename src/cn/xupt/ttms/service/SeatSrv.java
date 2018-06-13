@@ -44,4 +44,6 @@ public class SeatSrv {
     public ArrayList<Seat> findSeatByPage(int cPage, String seat_row){
         return seatDAO.findSeatByPage(cPage, seat_row);
     }
+
+
 }

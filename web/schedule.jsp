@@ -235,16 +235,20 @@
     var searchSched = function (btn) {
         var tr = btn.parentNode.parentNode;
         var td1 = tr.cells[0];
-        document.getElementById("SchedId").value = tr.cells[0].innerHTML;
-        document.getElementById("StudioId").value = tr.cells[1].innerHTML;
-        document.getElementById("PlayId").value = tr.cells[2].innerHTML;
-        document.getElementById("SchedTime").value = tr.cells[3].innerHTML;
-        document.getElementById("SchedTicketPrice").value = tr.cells[4].innerHTML;
+        document.getElementById("SchedId").value = tr.cells[0].innerHTML.trim();
+        document.getElementById("StudioId").value = tr.cells[1].innerHTML.trim();
+        document.getElementById("PlayId").value = tr.cells[2].innerHTML.trim();
+        document.getElementById("SchedTime").value = tr.cells[3].innerHTML.trim();
+        document.getElementById("SchedTicketPrice").value = tr.cells[4].innerHTML.trim();
     }
     var deleteSched = function (btn) {
         var tr = btn.parentNode.parentNode;
 //        alert(tr.cells[0].innerHTML);
-        document.getElementById("SchedIdde").value = tr.cells[0].innerHTML;
+        document.getElementById("SchedIdde").value = tr.cells[0].innerHTML.trim();
+    }
+
+    String.prototype.trim = function() {
+        return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
     }
 </script>
 

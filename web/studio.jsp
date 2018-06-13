@@ -277,13 +277,12 @@
     var searchAudio = function (btn) {
         var tr = btn.parentNode.parentNode;
         var td1 = tr.cells[0];
-        document.getElementById("name").value = tr.cells[1].innerHTML;
-        document.getElementById("row").value = tr.cells[2].innerHTML;
-        document.getElementById("col").value = tr.cells[3].innerHTML;
-        document.getElementById("status").value = tr.cells[4].innerHTML;
+        document.getElementById("name").value = tr.cells[1].innerHTML.trim();
+        document.getElementById("row").value = tr.cells[2].innerHTML.trim();
+        document.getElementById("col").value = tr.cells[3].innerHTML.trim();
+        document.getElementById("status").value = tr.cells[4].innerHTML.trim();
 
     }
-
 
     function checkRow() {
         var reg = /^[1-9]{1,2}$/;

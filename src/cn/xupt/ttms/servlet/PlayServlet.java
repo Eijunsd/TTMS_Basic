@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "playServlet",urlPatterns = "/playServlet")
+@WebServlet(name = "playServlet",urlPatterns = "/TTMS/playServlet")
 public class PlayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -178,7 +178,7 @@ public class PlayServlet extends HttpServlet {
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("search_play_name", play_name);
             try {
-                request.getRequestDispatcher("play.jsp")
+                request.getRequestDispatcher("TTMS/play/play.jsp")
                         .forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
