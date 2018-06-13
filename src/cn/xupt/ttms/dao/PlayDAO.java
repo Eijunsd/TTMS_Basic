@@ -29,14 +29,14 @@ public class PlayDAO implements IPlayDAO {
     }
 
     @SuppressWarnings("finally")
-    public ArrayList<Play> getPlayByPage(int cPage, String play_name) {
+    public ArrayList<Play> getPlayByPage(int cPage, String play_id) {
         // TODO Auto-generated method stub
         currentPage = cPage;
         ArrayList<Play> list = new ArrayList<Play>();
 
         // 若未指定查找某人，则默认全查
-        if (null == play_name || play_name.equals("null")) {
-            play_name = "";
+        if (null == play_id || play_id.equals("null")) {
+            play_id = "";
         }
 
         Connection conn = null;
@@ -45,10 +45,10 @@ public class PlayDAO implements IPlayDAO {
         try {
             // 获取记录总数 as AllRecord重命名
 
-            String sql1 = "select count(play_id) as AllRecord from play where play_name like ?";
+            String sql1 = "select count(play_id) as AllRecord from play where play_id like ?";
             conn = ConnectionManager.getInstance().getConnection();
             pstmt = conn.prepareStatement(sql1);
-            pstmt.setString(1, "%" + play_name + "%");
+            pstmt.setString(1, "%" + play_id + "%");
             rs = pstmt.executeQuery();
             // allCount; 数据库中条数
             if (rs.next())
@@ -64,11 +64,11 @@ public class PlayDAO implements IPlayDAO {
                 currentPage = allPageCount;
 
             // 获取第currentPage页数据
-            String sql2 = "select * from play where play_name like ? limit ?,?";
+            String sql2 = "select * from play where play_id like ? limit ?,?";
             // select * from tablename limit 开始位置,每页行数
 
             pstmt = conn.prepareStatement(sql2);
-            pstmt.setString(1, "%" + play_name + "%");
+            pstmt.setString(1, "%" + play_id + "%");
             pstmt.setInt(2, PAGE_SIZE * (currentPage - 1));
             pstmt.setInt(3, PAGE_SIZE);
             System.out.println(pstmt);

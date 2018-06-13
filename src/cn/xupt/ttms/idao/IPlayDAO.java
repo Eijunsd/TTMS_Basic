@@ -24,7 +24,7 @@ public interface IPlayDAO {
     public Play findPlayById(int playId);
 
     //∑÷“≥≤È—Ø
-    public ArrayList<Play> getPlayByPage(int cPage, String play_name);
+    public ArrayList<Play> getPlayByPage(int cPage, String play_id);
 
     public int getAllCount();
 

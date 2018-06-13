@@ -38,8 +38,8 @@ public class PlaySrv {
     }
 
     //∑÷“≥≤È—Ø
-    public ArrayList<Play> findPlayByPage(int cPage, String play_name){
-        return playDAO.getPlayByPage(cPage, play_name);
+    public ArrayList<Play> findPlayByPage(int cPage, String play_id){
+        return playDAO.getPlayByPage(cPage, play_id);
     }
 
     public int getAllCount(){

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -47,12 +46,12 @@ public class ScheduleServlet extends HttpServlet {
             }
             res = new ScheduleSrv().update(schedule);
 
-            System.out.println("在ScheduleServlet中执行add...是否成功？"+res);
+            System.out.println("在ScheduleServlet中执行add...是否成功？" + res);
         } else if (flag.equals("delete")) {
             System.out.println("在ScheduleServlet中执行delete...." + new Date());
             int ID = Integer.parseInt(request.getParameter("SchedId"));
             res = new ScheduleSrv().delete(ID);
-            System.out.println("在ScheduleServlet中执行delete...是否成功？"+res);
+            System.out.println("在ScheduleServlet中执行delete...是否成功？" + res);
         } else if (flag.equals("modify")) {
             System.out.println("在ScheduleServlet中执行modify...." + new Date());
 
@@ -64,7 +63,7 @@ public class ScheduleServlet extends HttpServlet {
 
             res = new ScheduleSrv().update(schedule);
 
-            System.out.println("在ScheduleServlet中执行modify...是否成功？"+res);
+            System.out.println("在ScheduleServlet中执行modify...是否成功？" + res);
         }
 
 

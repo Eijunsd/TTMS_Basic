@@ -47,7 +47,7 @@
 </button>
 <form action="/TTMS/playServlet?flag=searchByPage" method="post" onsubmit="highlight(this.s.value);return false;"
       style="float: right">
-    <input name="empNo" id="s" value="${search_emp_no}" class="sou"/>
+    <input name="flag" value="${search_playId}" class="sou"/>
     <input type="submit" id="submit" value="查询"
            style="margin-right: 20px;font-size: 20px;background: #508675;color: #FFFFFF"/>
 </form>
@@ -88,7 +88,7 @@
                 System.out.println("curr:" + currentPage);
                 for (Play play : list) {%>
         <tr>
-            <td><%=play.getPlayId()%>
+            <td hidden><%=play.getPlayId()%>
             </td>
             <td><%=play.getPlayName()%>
             </td>
@@ -120,15 +120,15 @@
     <div class="text-center">
         <nav>
             <ul class="pagination">
-                <li><a href="/TTMS/playServlet?flag=searchByPage&currentPage=1&emp_name=${search_emp_no}">首页</a></li>
+                <li><a href="/TTMS/playServlet?flag=searchByPage&currentPage=1&search_playId=${search_playId}">首页</a></li>
                 <li>
-                    <a href="/TTMS/playServlet?flag=searchByPage&currentPage=<%=(currentPage-1)<1?1:(currentPage-1)%>&emp_name=${search_emp_no}">上一页</a>
+                    <a href="/TTMS/playServlet?flag=searchByPage&currentPage=<%=(currentPage-1)<1?1:(currentPage-1)%>&search_playId=${search_emp_no}">上一页</a>
                 </li>
                 <li>
-                    <a href="/TTMS/playServlet?flag=searchByPage&currentPage=<%=(currentPage+1)>allPageCount?allPageCount:(currentPage+1)%>&emp_name=${search_emp_no}">下一页</a>
+                    <a href="/TTMS/playServlet?flag=searchByPage&currentPage=<%=(currentPage+1)>allPageCount?allPageCount:(currentPage+1)%>&search_playId=${search_emp_no}">下一页</a>
                 </li>
                 <li>
-                    <a href="/TTMS/playServlet?flag=searchByPage&currentPage=<%=allPageCount%>&emp_name=${search_emp_no}">末页</a>
+                    <a href="/TTMS/playServlet?flag=searchByPage&currentPage=<%=allPageCount%>&search_playId=${search_playId}">末页</a>
                 </li>
             </ul>
         </nav>
@@ -145,16 +145,17 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel" style="text-align: center;font-size: 25px">
-                    添加员工
+                    添加影片
                 </h4>
             </div>
             <div class="modal-body">
                 <form action="/TTMS/playServlet" method="post">
-                    <div><h4>工号：<input type="text" name="empNo"></h4></div>
-                    <div><h4>姓名：<input type="text" name="empName"></h4></div>
-                    <div><h4>电话：<input type="text" name="empTel"></h4></div>
-                    <div><h4>地址：<input type="text" name="empAddr"></h4></div>
-                    <div><h4>邮箱：<input type="text" name="empEmail"></h4></div>
+                    <div><h4>影片名称：<input type="text" name="empNo"></h4></div>
+                    <div><h4>影片类型：<input type="text" name="empName"></h4></div>
+                    <div><h4>影片语言：<input type="text" name="empTel"></h4></div>
+                    <div><h4>影片时长：<input type="text" name="empAddr"></h4></div>
+                    <div><h4>初始票价：<input type="text" name="empEmail"></h4></div>
+                    <div><h4>&#12288&#12288状态：<input type="text" name="empEmail"></h4></div>
                     <div><h4><input type="checkbox" name="empInit" id="init" value="no">初始化帐号密码</h4></div>
                     <div><h4><input type="hidden" name="flag" value="add"></h4></div>
                     <div class="modal-footer">
@@ -184,11 +185,12 @@
             </div>
             <div class="modal-body">
                 <form action="/TTMS/playServlet" method="post">
-                    <div><h4>工号：<input type="text" id="num" name="empNo"></h4></div>
-                    <div><h4>姓名：<input type="text" id="worker" name="empName"></h4></div>
-                    <div><h4>电话：<input type="text" id="name" name="empTel"></h4></div>
-                    <div><h4>地址：<input type="text" id="tel" name="empAddr"></h4></div>
-                    <div><h4>邮箱：<input type="text" id="address" name="empEmail"></h4></div>
+                    <div><h4>影片名称：<input type="text" id="playName" name="playName"></h4></div>
+                    <div><h4>影片类型：<input type="text" id="playType" name="playType"></h4></div>
+                    <div><h4>影片语言：<input type="text" id="playLang" name="playLang"></h4></div>
+                    <div><h4>影片时长：<input type="text" id="playLength" name="playLength"></h4></div>
+                    <div><h4>初始票价：<input type="text" id="playPrice" name="playPrice"></h4></div>
+                    <div><h4>&#12288&#12288状态：<input type="text" id="playStatus" name="playStatus"></h4></div>
                     <div><h4><input type="hidden" name="flag" value="modify"></h4></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消
@@ -218,7 +220,7 @@
             <div class="modal-footer">
                 <form action="/TTMS/playServlet" method="post">
                     <div><h4><input type="hidden" name="flag" value="delete"></h4></div>
-                    <div><h4><input type="hidden" id="empNo" name="empNo"></h4></div>
+                    <div><h4><input type="hidden" id="playNo" name="playNo"></h4></div>
                     <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">取 消</button>
                     <input type="submit" class="btn btn-xs btn-danger" value="确认">
                 </form>
@@ -232,15 +234,16 @@
     var modifyPlay = function (btn) {
         var tr = btn.parentNode.parentNode;
         var td1 = tr.cells[0];
-        document.getElementById("num").value = tr.cells[0].innerHTML.trim();
-        document.getElementById("worker").value = tr.cells[1].innerHTML.trim();
-        document.getElementById("name").value = tr.cells[2].innerHTML.trim();
-        document.getElementById("tel").value = tr.cells[3].innerHTML.trim();
-        document.getElementById("address").value = tr.cells[4].innerHTML.trim();
+        document.getElementById("playName").value = tr.cells[1].innerHTML.trim();
+        document.getElementById("playType").value = tr.cells[2].innerHTML.trim();
+        document.getElementById("playType").value = tr.cells[3].innerHTML.trim();
+        document.getElementById("playLength").value = tr.cells[4].innerHTML.trim();
+        document.getElementById("playPrice").value = tr.cells[5].innerHTML.trim();
+        document.getElementById("playStatus").value = tr.cells[6].innerHTML.trim();
     }
     var deletePlay = function (btn) {
         var tr = btn.parentNode.parentNode;
-        document.getElementById("empNo").value = tr.cells[0].innerHTML.trim();
+        document.getElementById("playStatus").value = tr.cells[0].innerHTML.trim();
     }
 </script>
 
