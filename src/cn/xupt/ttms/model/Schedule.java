@@ -12,9 +12,9 @@ public class Schedule implements Serializable {
 
     private Integer playId;
 
-    private Date schedTime;
+    private String schedTime;
 
-    private Float schedTicketPrice;
+    private Integer schedTicketPrice;
 
 
     public Schedule() {
@@ -45,19 +45,19 @@ public class Schedule implements Serializable {
         this.playId = playId;
     }
 
-    public Date getSchedTime() {
+    public String getSchedTime() {
         return schedTime;
     }
 
-    public void setSchedTime(Date schedTime) {
+    public void setSchedTime(String schedTime) {
         this.schedTime = schedTime;
     }
 
-    public Float getSchedTicketPrice() {
+    public Integer getSchedTicketPrice() {
         return schedTicketPrice;
     }
 
-    public void setSchedTicketPrice(Float schedTicketPrice) {
+    public void setSchedTicketPrice(Integer schedTicketPrice) {
         this.schedTicketPrice = schedTicketPrice;
     }
 

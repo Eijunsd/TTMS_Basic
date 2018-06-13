@@ -38,4 +38,20 @@ public class ScheduleSrv {
     public Schedule findScheduleById(int scheduleId){
         return scheduleDAO.findScheduleById(scheduleId);
     }
+
+    public ArrayList<Schedule> findScheduleByPage(int cPage, String studio_id) {
+        return scheduleDAO.findScheduleByPage(cPage, studio_id);
+    }
+
+    public int getAllCount() {
+        return scheduleDAO.getAllCount();
+    }
+
+    public int getAllPageCount() {
+        return scheduleDAO.getAllPageCount();
+    }
+
+    public int getCurrentPage() {
+        return scheduleDAO.getCurrentPage();
+    }
 }

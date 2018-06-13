@@ -22,4 +22,12 @@ public interface IScheduleDAO {
 
     // 根据用户id查(一般用于数据内部关联操作)
     public Schedule findScheduleById(int scheduleId);
+
+    public ArrayList<Schedule> findScheduleByPage(int cPage, String studio_id);
+
+    public int getAllCount();
+
+    public int getAllPageCount();
+
+    public int getCurrentPage();
 }

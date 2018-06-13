@@ -79,8 +79,8 @@ public class ScheduleDAO implements IScheduleDAO {
                 schedule.setSchedId(rs.getInt("sched_id"));
                 schedule.setStudioId(rs.getInt("studio_id"));
                 schedule.setPlayId(rs.getInt("play_id"));
-                schedule.setSchedTicketPrice(rs.getFloat("sched_ticket_price"));
-                schedule.setSchedTime(rs.getTimestamp("sched_time"));
+                schedule.setSchedTicketPrice(rs.getInt("sched_ticket_price"));
+                schedule.setSchedTime(rs.getString("sched_time"));
 
                 // 将该用户信息插入列表
                 list.add(schedule);
@@ -103,13 +103,13 @@ public class ScheduleDAO implements IScheduleDAO {
         Connection con = ConnectionManager.getInstance().getConnection();
         PreparedStatement pstmt = null;
         try {
-            String sql = "insert into schedule(sched_id, studio_id, play_id, sched_time, sched_ticket_price) values(?,?,?,?,?)";
+            String sql = "insert into schedule(studio_id, play_id, sched_time, sched_ticket_price) values(?,?,?,?)";
             pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, schedule.getSchedId());
-            pstmt.setInt(2, schedule.getStudioId());
-            pstmt.setInt(3, schedule.getPlayId());
-            pstmt.setTimestamp(4, new java.sql.Timestamp(schedule.getSchedTime().getTime()));
-            pstmt.setFloat(5, schedule.getSchedTicketPrice());
+//            pstmt.setInt(1, schedule.getSchedId());
+            pstmt.setInt(1, schedule.getStudioId());
+            pstmt.setInt(2, schedule.getPlayId());
+            pstmt.setString(3, schedule.getSchedTime());
+            pstmt.setFloat(4, schedule.getSchedTicketPrice());
 
 
             pstmt.executeUpdate();
@@ -164,8 +164,8 @@ public class ScheduleDAO implements IScheduleDAO {
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, schedule.getStudioId());
             pstmt.setInt(2, schedule.getPlayId());
-            pstmt.setTimestamp(3, new java.sql.Timestamp(schedule.getSchedTime().getTime()));
-            pstmt.setDouble(4, schedule.getSchedTicketPrice());
+            pstmt.setString(3, schedule.getSchedTime());
+            pstmt.setFloat(4, schedule.getSchedTicketPrice());
             pstmt.setInt(5, schedule.getSchedId());
 
             pstmt.executeUpdate();
@@ -197,8 +197,8 @@ public class ScheduleDAO implements IScheduleDAO {
                 info.setSchedId(rs.getInt("sched_id"));
                 info.setStudioId(rs.getInt("studio_id"));
                 info.setPlayId(rs.getInt("play_id"));
-                info.setSchedTime(rs.getDate("sched_time"));
-                info.setSchedTicketPrice(rs.getFloat("sched_ticket_price"));
+                info.setSchedTime(rs.getString("sched_time"));
+                info.setSchedTicketPrice(rs.getInt("sched_ticket_price"));
 
                 // 加入列表
                 list.add(info);
@@ -234,8 +234,8 @@ public class ScheduleDAO implements IScheduleDAO {
                 info.setSchedId(rs.getInt("sched_id"));
                 info.setStudioId(rs.getInt("studio_id"));
                 info.setPlayId(rs.getInt("play_id"));
-                info.setSchedTime(rs.getDate("sched_time"));
-                info.setSchedTicketPrice(rs.getFloat("sched_ticket_price"));
+                info.setSchedTime(rs.getString("sched_time"));
+                info.setSchedTicketPrice(rs.getInt("sched_ticket_price"));
                 // 加入列表
                 list.add(info);
             }
@@ -267,8 +267,8 @@ public class ScheduleDAO implements IScheduleDAO {
                 info.setSchedId(scheduleId);
                 info.setStudioId(rs.getInt("studio_id"));
                 info.setPlayId(rs.getInt("play_id"));
-                info.setSchedTime(rs.getDate("sched_time"));
-                info.setSchedTicketPrice(rs.getFloat("sched_ticket_price"));
+                info.setSchedTime(rs.getString("sched_time"));
+                info.setSchedTicketPrice(rs.getInt("sched_ticket_price"));
             }
         } catch (Exception e) {
             e.printStackTrace();
