@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>员工管理</title>
+    <title>剧目管理</title>
     <style>
         .modal-dialog {
             width: 500px;
@@ -79,7 +79,7 @@
             int allCount = 0;     //总记录数
             int allPageCount = 0; //总页数
             //查看request中是否有currentPage信息，如没有，则说明首次访问该页
-            if (request.getAttribute("allplay") != null) {
+            if (request.getAttribute("allPlay") != null) {
                 //获取Action返回的信息
                 currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
                 List<Play> list = (List<Play>) request.getAttribute("allPlay");
@@ -150,13 +150,13 @@
             </div>
             <div class="modal-body">
                 <form action="/TTMS/playServlet" method="post">
-                    <div><h4>影片名称：<input type="text" name="empNo"></h4></div>
-                    <div><h4>影片类型：<input type="text" name="empName"></h4></div>
-                    <div><h4>影片语言：<input type="text" name="empTel"></h4></div>
-                    <div><h4>影片时长：<input type="text" name="empAddr"></h4></div>
-                    <div><h4>初始票价：<input type="text" name="empEmail"></h4></div>
-                    <div><h4>&#12288&#12288状态：<input type="text" name="empEmail"></h4></div>
-                    <div><h4><input type="checkbox" name="empInit" id="init" value="no">初始化帐号密码</h4></div>
+                    <div><h4>影片名称：<input type="text" name="playName"></h4></div>
+                    <div><h4>影片类型：<input type="text" name="playType"></h4></div>
+                    <div><h4>影片语言：<input type="text" name="playLang"></h4></div>
+                    <div><h4>影片时长：<input type="text" name="playLength"></h4></div>
+                    <div><h4>初始票价：<input type="text" name="playPrice"></h4></div>
+                    <div><h4>&#12288&#12288状态：<input type="text" name="playStatus"></h4></div>
+                    <%--<div><h4><input type="checkbox" name="empInit" id="init" value="no">初始化帐号密码</h4></div>--%>
                     <div><h4><input type="hidden" name="flag" value="add"></h4></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消
@@ -170,8 +170,8 @@
 </div>
 
 
-<!--修改演出厅-->
-<div class="modal fade bs-example-modal-lg" id="reviseStaff" tabindex="-1" role="dialog" aria-labelledby="reviseStaff"
+<!--  修改影片信息-->
+<div class="modal fade bs-example-modal-lg" id="modifyPlay" tabindex="-1" role="dialog" aria-labelledby="modifyPlay"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -180,11 +180,12 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="revise">
-                    修改员工信息
+                    修改影片信息
                 </h4>
             </div>
             <div class="modal-body">
                 <form action="/TTMS/playServlet" method="post">
+                    <div hidden><input type="text" id="playId" name="playId"></div>
                     <div><h4>影片名称：<input type="text" id="playName" name="playName"></h4></div>
                     <div><h4>影片类型：<input type="text" id="playType" name="playType"></h4></div>
                     <div><h4>影片语言：<input type="text" id="playLang" name="playLang"></h4></div>
@@ -234,16 +235,18 @@
     var modifyPlay = function (btn) {
         var tr = btn.parentNode.parentNode;
         var td1 = tr.cells[0];
+        document.getElementById("playNo").value = tr.cells[0].innerHTML.trim();
+        document.getElementById("playId").value = tr.cells[0].innerHTML.trim();
         document.getElementById("playName").value = tr.cells[1].innerHTML.trim();
         document.getElementById("playType").value = tr.cells[2].innerHTML.trim();
-        document.getElementById("playType").value = tr.cells[3].innerHTML.trim();
+        document.getElementById("playLang").value = tr.cells[3].innerHTML.trim();
         document.getElementById("playLength").value = tr.cells[4].innerHTML.trim();
         document.getElementById("playPrice").value = tr.cells[5].innerHTML.trim();
         document.getElementById("playStatus").value = tr.cells[6].innerHTML.trim();
     }
     var deletePlay = function (btn) {
         var tr = btn.parentNode.parentNode;
-        document.getElementById("playStatus").value = tr.cells[0].innerHTML.trim();
+        document.getElementById("playNo").value = tr.cells[0].innerHTML.trim();
     }
 </script>
 

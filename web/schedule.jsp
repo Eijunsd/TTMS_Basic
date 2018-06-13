@@ -246,10 +246,6 @@
 //        alert(tr.cells[0].innerHTML);
         document.getElementById("SchedIdde").value = tr.cells[0].innerHTML.trim();
     }
-
-    String.prototype.trim = function() {
-        return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
 </script>
 
 </body>

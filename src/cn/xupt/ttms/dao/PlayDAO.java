@@ -100,7 +100,6 @@ public class PlayDAO implements IPlayDAO {
 
     @Override
     public boolean insert(Play play) {
-        // TODO Auto-generated method stub
 
         boolean result = false;
         if (play == null)
@@ -110,7 +109,7 @@ public class PlayDAO implements IPlayDAO {
         Connection con = ConnectionManager.getInstance().getConnection();
         PreparedStatement pstmt = null;
         try {
-            String sql = "insert into play (play_type, play_lang, play_name, play_introduction, play_image, play_length, play_ticket_price, play_status) values (?,?,?,?,?,?,?);";
+            String sql = "insert into play (play_type, play_lang, play_name, play_introduction, play_image, play_length, play_ticket_price, play_status) values (?,?,?,?,?,?,?,?);";
             pstmt = con.prepareStatement(sql);
 
             pstmt.setString(1, play.getPlayType());
@@ -120,7 +119,7 @@ public class PlayDAO implements IPlayDAO {
             pstmt.setString(5, play.getPlayImage());
             pstmt.setString(6, String.valueOf(play.getPlayLength()));
             pstmt.setString(7, String.valueOf(play.getPlayTicketPrice()));
-            pstmt.setString(7, String.valueOf(play.getPlayStatus()));
+            pstmt.setString(8, String.valueOf(play.getPlayStatus()));
 
 
             pstmt.executeUpdate();
@@ -136,7 +135,6 @@ public class PlayDAO implements IPlayDAO {
 
     @Override
     public boolean delete(int playId) {
-        // TODO Auto-generated method stub
 
         boolean result = false;
         if (playId == 0)

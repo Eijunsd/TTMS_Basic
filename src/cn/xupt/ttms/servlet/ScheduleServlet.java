@@ -81,12 +81,12 @@ public class ScheduleServlet extends HttpServlet {
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("allCount", allCount);
         request.setAttribute("allPageCount", allPageCount);
-
-        request.setAttribute("desc", "ok");
-        try {
-            request.getRequestDispatcher("/schedule.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (res) {
+            request.setAttribute("desc", "ok");
+            searchByPage(request, response, 0);
+        }else{
+            request.setAttribute("desc", "no");
+            request.getRequestDispatcher("TTMS/play/play.jsp").forward(request, response);
         }
 
     }
