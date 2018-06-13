@@ -23,5 +23,13 @@ public interface IStudioDAO {
     // 根据用户id查(一般用于数据内部关联操作)
     public Studio findStudioById(int studioId);
 
-    public ArrayList<Studio> findStudioByPage(int cPage, String seat_row);
+//    public ArrayList<Studio> findStudioByPage(int cPage, String seat_row);
+
+    public ArrayList<Studio> findStudioByPage(int cPage, String studioId);
+
+    public int getAllCount();
+
+    public int getAllPageCount();
+
+    public int getCurrentPage();
 }

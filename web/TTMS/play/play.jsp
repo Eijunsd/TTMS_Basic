@@ -194,8 +194,7 @@
                     <div><h4>&#12288&#12288状态：<input type="text" id="playStatus" name="playStatus"></h4></div>
                     <div><h4><input type="hidden" name="flag" value="modify"></h4></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消
-                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                         <input type="submit" class="btn btn-primary" value="保存">
                     </div>
                 </form>

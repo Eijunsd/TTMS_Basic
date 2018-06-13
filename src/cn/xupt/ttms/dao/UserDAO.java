@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UserDAO implements IUserDAO {
 
-    public static final int PAGE_SIZE = 6; // 每页显示条数
+    public static final int PAGE_SIZE = 10; // 每页显示条数
     private static int allCount; // 数据库中条数
     private static int allPageCount; // 总页数
     private static int currentPage; // 当前页

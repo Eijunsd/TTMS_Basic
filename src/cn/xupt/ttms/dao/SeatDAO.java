@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SeatDAO implements ISeatDAO {
-    public static final int PAGE_SIZE = 5; // 每页显示条数
+    public static final int PAGE_SIZE = 10; // 每页显示条数
     private int allCount; // 数据库中条数
     private int allPageCount; // 总页数
     private int currentPage; // 当前页
