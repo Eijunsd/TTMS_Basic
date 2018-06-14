@@ -38,9 +38,9 @@
         style="color: #8a6d3b;background: #FFFFFF;border-radius: 6px;margin-left: 20px;margin-top: 10px;margin-bottom: 20px">
     添加演出计划
 </button>
-<form action="/TTMS/scheduleServlet">
-    <button name="flag" value="searchAll" class="btn">搜索</button>
-</form>
+<%--<form action="/TTMS/scheduleServlet">--%>
+    <%--<button name="flag" value="searchAll" class="btn">搜索</button>--%>
+<%--</form>--%>
 <form action="/TTMS/scheduleServlet?flag=searchByPage" method="post" onsubmit="highlight(this.s.value);return false;"
       style="float: right">
     <input name="flag" id="${search_schedId}" class="sou"/>

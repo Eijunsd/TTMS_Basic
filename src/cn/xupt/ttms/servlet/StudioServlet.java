@@ -31,7 +31,7 @@ public class StudioServlet extends HttpServlet {
         String flag = request.getParameter("flag");
         System.out.println("ScheduleServlet中执行的方法flag:" + flag);
         if (flag.equals("searchByPage")) {
-            System.out.println("ScheduleServlet中执行的searchByPage...");
+//            System.out.println("ScheduleServlet中执行的searchByPage...");
             searchByPage(request, response, 1);
             return;
         }

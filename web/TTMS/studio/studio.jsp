@@ -237,7 +237,7 @@
                     <div><h4><input type="hidden" name="flag" value="modify"></h4></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="submit" class="btn btn-primary" data-dismiss="modal">保存</button>
+                        <input type="submit" class="btn btn-primary" data-dismiss="modal" value="保存"></input>
                     </div>
                     <%--<script>--%>
                     <%--alert(123456);--%>
